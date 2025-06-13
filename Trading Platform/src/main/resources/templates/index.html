@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>交易平台</title>
+    <link rel="icon" href="/img/page_icon.png"/>
+    <link th:href="@{/css/home_page/home_page_circle.css}" rel="stylesheet"/>
+    <link th:href="@{/css/home_page/header_and_nav.css}" rel="stylesheet"/>
+    <link th:href="@{/css/home_page/bottom_ifon_and_feature.css}" rel="stylesheet"/>
+    <script th:src="@{/js/jquery-1.3.2.min.js}"></script>
+    <script th:src="@{/js/home/home_page_circle.js}"></script>
+    <script th:src="@{/js/home/header_model_js.js}"></script>
+</head>
+<body>
+<!--整体结构很明确，就是轮播图的位置用了绝对位置感觉很不好，
+然后接下来那些都用了绝对位置，很尴尬-->
+<header th:include="header :: copy"></header>
+<div th:include="short_nav_show :: short_nav_show" class="short_nav_show"></div>
+<nav th:include="my_nav :: my_nav" class="my_nav"></nav>
+<div th:include="personal_nav :: personal_nav" class="personal_nav"></div>
+<div class="my_slider">
+    <div class="my_slide">
+        <h1>Apple MacBook Air 13.3英寸笔记本电脑</h1>
+        <p>
+          2025款MacBook Air搭载M4芯片，新增天蓝色配色，13/15英寸Liquid视网膜屏，续航18小时，支持双6K外接显示器</p>
+        <div class="slide_img">
+            <img src="/img/home/macbook.jpg" style="width: 400px;height: 270px"/>
+        </div>
+    </div>
+    <div class="my_slide">
+        <h1>华为Pura 80</h1>
+        <p>
+            华为Pura 80系列Ultra版首创“一镜双目”双长焦技术，搭载1英寸主摄和1/1.28英寸长焦传感器，支持3.7x和9.4x光学变焦，动态范围达16EV。全系配备HarmonyOS 5.1系统，支持星闪、北斗卫星通信（Pro+/Ultra支持天通卫星），5700mAh电池+100W快充
+        </p>
+        <div class="slide_img">
+            <img src="/img/home/huawei.jpg" style="width: 400px;height: 270px"/>
+        </div>
+    </div>
+    <div class="my_slide">
+        <h1>Santoni低帮皮质运动鞋 </h1>
+        <p>
+            Santoni低帮皮质运动鞋采用意大利小牛皮制成，以杏仁米色为主，搭配金色logo字母、穿孔细节及圆头设计，兼具优雅与休闲感。鞋舌和后跟压花logo彰显品牌工艺，橡胶鞋底确保舒适耐磨，100%意大利手工制造，体现奢华品质
+        </p>
+        <div class="slide_img">
+            <img src="/img/home/shoes.jpg" style="width: 400px;height: 270px"/>
+        </div>
+    </div>
+    <div class="my_slide current">
+        <h1>罗技G502-HERO</h1>
+        <p>
+            专为先进游戏性能而设计。G502 HERO 采用 HERO 25K 游戏传感器，具有亚微米精度追踪、可自定义 LIGHTSYNC RGB、板载配置文件、可重定位的配重等先进特性。 </p>
+        <div class="slide_img">
+            <img src="/img/home/gpw502.jpg" style="width: 400px;height: 270px"/>
+        </div>
+    </div>
+    <div class="left_border">
+        <span class="left_turn"></span>
+    </div>
+    <div class="right_border">
+        <span class="right_turn"></span>
+    </div>
+</div>
+<div class="featured_products">
+    <h2>精选的商品</h2>
+    <figure class="product" th:each="o:${shopInformationBean}">
+        <div class="product_img_div">
+            <img src="/img/home/feature_prodects/cont1.jpg" class="show_img" th:src="${o.image}"/>
+        </div>
+        <p class="show_tip" th:text="${o.remark}"></p>
+        <input class="product_id" type="hidden" th:value="${o.id}"/>
+        <a class="product_name" th:href="'/selectById.do?id='+${o.id}" th:text="${o.name}" th:title="${o.name}"></a><br/>
+        <!--<span class="product_name" th:text="${o.name}" th:value="${o.id}">Big block Lether Bag</span><br/>-->
+        <span class="product_cost" th:text="'￥'+${o.price}+'元'">$350.00</span><br/><br/>
+        <span class="buy product_1" th:value="${o.id}">加入购物车</span>
+    </figure>
+
+<footer>
+    <p>Copyright © 2025-2200.Company name All rights reserved.<a href="/"></a></p>
+</footer>
+</body>
+</html>
